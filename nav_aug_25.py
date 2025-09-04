@@ -65,16 +65,18 @@ df = data.copy()
 # Trim leading and trailing whitespaces from column names
 df.columns = df.columns.str.strip()
 
+# Get the reporting month:
+mo = "Aug"
+int_month = 8
+current_month = datetime(2025, 8, 1).strftime("%B")
+report_year = datetime(2025, 8, 1).year
+
 # Filtered df where 'Date of Activity:' is in May
 df["Date of Activity"] = pd.to_datetime(df["Date of Activity"], errors='coerce')
 # df["Date of Activity"] = df["Date of Activity"].dt.tz_localize('UTC')  # or local timezone first, then convert to UTC
-df = df[df['Date of Activity'].dt.month == 8]
+df = df[df['Date of Activity'].dt.month == int_month]
 # Sort df from oldest to newest
 df = df.sort_values(by='Date of Activity', ascending=True)
-
-# Get the reporting month:
-current_month = datetime(2025, 8, 1).strftime("%B")
-report_year = datetime(2025, 8, 1).year
 
 # Strip whitespace
 df.columns = df.columns.str.strip()
@@ -1629,7 +1631,7 @@ app.layout = html.Div(
                     children=[
                         html.A(
                             'Repo',
-                            href=f'https://github.com/CxLos/Navigation_{current_month}_{report_year}',
+                            href=f'https://github.com/CxLos/Nav_{current_month}_{report_year}',
                             className='btn'
                         ),
                     ]
