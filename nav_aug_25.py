@@ -41,13 +41,11 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Define the Google Sheets URL
 sheet_url = "https://docs.google.com/spreadsheets/d/1Vi5VQWt9AD8nKbO78FpQdm6TrfRmg0o7az77Hku2i7Y/edit#gid=78776635"
-
 # Define the scope
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 # Load credentials
 encoded_key = os.getenv("GOOGLE_CREDENTIALS")
-
 if encoded_key:
     json_key = json.loads(base64.b64decode(encoded_key).decode("utf-8"))
     creds = ServiceAccountCredentials.from_json_keyfile_dict(json_key, scope)
